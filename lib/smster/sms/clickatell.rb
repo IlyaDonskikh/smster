@@ -1,8 +1,10 @@
 class Sms::Clickatell < Sms
   def send_sms
+    config = Smster.configuration
+    authorization_code = config.clickatell_authorization_code
+
     text = self.text.tr(" ", "+")
     phone = to.gsub(/\D/, '') 
-    authorization_code = Rails.application.config.x.clickatell.authorization_code
 
     api_message_id = if self.mode == 'test'
       puts "Mode: #{mode}. To: #{phone}, text: #{text}"

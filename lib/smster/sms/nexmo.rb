@@ -1,9 +1,11 @@
 class Sms::Nexmo < Sms
   def send_sms
+    config = Smster.configuration
+    api_key = config.nexmo_key
+    api_secret = config.nexmo_sekret
+    
     text = self.text.tr(" ", "+")
     phone = to.gsub(/\D/, '') 
-    api_key = Rails.application.config.x.nexmo.key
-    api_secret = Rails.application.config.x.nexmo.secret 
     current_status = STATUS_CODES[:sent]
 
     api_message_id = if self.mode == 'test'
