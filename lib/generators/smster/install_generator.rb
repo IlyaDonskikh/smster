@@ -18,6 +18,14 @@ module Smster
       @prev_migration_nr.to_s
     end
 
+    desc 'Add initializer'
+    source_root File.expand_path('../install/templates', __FILE__)
+
+    def copy_initializer
+      filename = 'smster'
+      copy_file "#{filename}.rb", "config/initializers/#{filename}.rb"
+    end
+
     protected
       def copy_migration(filename)
         if self.class.migration_exists?("db/migrate", "#{filename}")

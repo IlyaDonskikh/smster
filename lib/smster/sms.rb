@@ -8,6 +8,9 @@ class Sms < ActiveRecord::Base
   ## Callbacks
   after_create :send_sms
 
+  ## Validations
+  validates :type, :to, :text, presence: true
+
   ## Etc.
   def initialize(attributes = {})
     attr_with_defaults = {
@@ -21,10 +24,6 @@ class Sms < ActiveRecord::Base
     when 'test' then 'test'
     else 'production'
     end
-  end
-
-  def reform_phone(number)
-    number.gsub(/\D/, '') 
   end
 
   def accept!
