@@ -11,6 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150330154603) do
+
+  create_table "smsters", force: :cascade do |t|
+    t.string   "text"
+    t.string   "name"
+    t.string   "from"
+    t.string   "to"
+    t.string   "code"
+    t.string   "type"
+    t.integer  "status"
+    t.string   "status_message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

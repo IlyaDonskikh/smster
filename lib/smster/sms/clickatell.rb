@@ -27,6 +27,7 @@ class Sms::Clickatell < Sms
   rescue => e
     p 'Error: ' + e.to_s
     self.status = STATUS_CODES[:failed]
+    self.status_message = e.to_s
     self.save
   end
 end

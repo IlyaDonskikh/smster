@@ -3,7 +3,7 @@ class Sms::Nexmo < Sms
     config = Smster.configuration
     api_key = config.nexmo_key
     api_secret = config.nexmo_sekret
-    
+
     text = self.text.tr(" ", "+")
     phone = to.gsub(/\D/, '') 
     current_status = STATUS_CODES[:sent]
@@ -30,6 +30,7 @@ class Sms::Nexmo < Sms
   rescue => e
     puts 'Error: ' + e.to_s
     self.status = STATUS_CODES[:failed]
+    self.status_message = e.to_s
     self.save
   end
 end
