@@ -8,6 +8,7 @@ class CreateSmsters< ActiveRecord::Migration
       t.string :code
       t.string :type
       t.integer :status
+      t.string :status_message
 
       t.timestamps
     end
