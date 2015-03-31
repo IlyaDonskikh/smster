@@ -5,6 +5,8 @@ require 'smster/sms/clickatell'
 require 'smster/sms/nexmo'
 
 module Smster
+  class Engine < Rails::Engine; end
+  
   class << self
     attr_accessor :configuration
   end

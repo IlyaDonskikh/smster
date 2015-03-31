@@ -9,7 +9,6 @@ class Sms::ClickatellTest < ActiveSupport::TestCase
 
   test "create" do
     sms = @provider.create(text: @text, to: @number)
-
     assert_equal false, sms.new_record?
   end
 
