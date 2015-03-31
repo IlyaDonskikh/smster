@@ -3,7 +3,7 @@ PATH
   specs:
     smster (0.0.1)
       rails (~> 4)
-      rest-client
+      rest-client (~> 1.8)
 
 GEM
   remote: https://rubygems.org/

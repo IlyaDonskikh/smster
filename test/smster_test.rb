@@ -10,7 +10,6 @@ class SmsterTest < ActiveSupport::TestCase
 
     config = Smster.configuration
 
-    assert_equal "", config.clickatell_authorization_code
     assert_equal nexmo_key, config.nexmo_key
   end
 end
