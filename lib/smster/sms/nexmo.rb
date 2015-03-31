@@ -9,7 +9,7 @@ class Sms::Nexmo < Sms
     current_status = STATUS_CODES[:sent]
 
     api_message_id = if self.mode == 'test'
-      puts "Mode: #{mode}. To: #{phone}, text: #{text}"
+      logger.debug("Mode: #{mode}. To: #{phone}, text: #{text}")
       self.id
     else
       response = RestClient.post('https://rest.nexmo.com/sms/json', 
@@ -28,7 +28,7 @@ class Sms::Nexmo < Sms
       self.save
     end
   rescue => e
-    puts 'Error: ' + e.to_s
+    logger.debug("Error #{e}")
     self.status = STATUS_CODES[:failed]
     self.status_message = e.to_s
     self.save

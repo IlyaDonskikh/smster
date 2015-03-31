@@ -7,7 +7,7 @@ class Sms::Clickatell < Sms
     phone = to.gsub(/\D/, '') 
 
     api_message_id = if self.mode == 'test'
-      puts "Mode: #{mode}. To: #{phone}, text: #{text}"
+      logger.debug("Mode: #{mode}. To: #{phone}, text: #{text}")
       self.id
     else
       response = RestClient.post('https://api.clickatell.com/rest/message',
@@ -25,7 +25,7 @@ class Sms::Clickatell < Sms
       self.save
     end
   rescue => e
-    p 'Error: ' + e.to_s
+    logger.debug("Error #{e}")
     self.status = STATUS_CODES[:failed]
     self.status_message = e.to_s
     self.save
