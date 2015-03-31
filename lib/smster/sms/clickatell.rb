@@ -16,7 +16,8 @@ class Sms::Clickatell < Sms
         :accept => :json, 
         'X-Version' => 1, 
         'Authorization' => "bearer #{authorization_code}")
-      JSON.parse(response)['data']['message'][0]['apiMessageId']
+      response = JSON.parse(response)
+      response['data']['message'][0]['apiMessageId']
     end
 
     if api_message_id.present?
