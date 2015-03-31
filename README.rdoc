@@ -1,3 +1,32 @@
 = Smster
+SMS sending service through different providers with maximum convenience.
 
-This project rocks and uses MIT-LICENSE.
+===== Supported
+* {Nexmo}[https://www.nexmo.com/]
+* {Clickatell}[https://www.clickatell.com/] 
+
+== Setup
+Add gem:
+  gem 'smster', git: 'git@github.com:IlyaDonskikh/smster.git'
+  
+Install:
+  rails g smster:install
+
+== Sending message
+Add config of your provider into config/initializers/smster.rb.
+
+And let's start!
+  Sms::Nexmo.create(text: 'sms text', to: phone_number)
+  Sms::Clickatell.create(text: 'sms text', to: phone_number)
+  
+== Callbacks
+Add to routes, setup proveder callbacks and get sms statuses:
+  post 'smster/$provider_name/callback'
+  
+== Feedback
+Please use the {issue tracker}[https://github.com/IlyaDonskikh/smster/issues].
+
+== Thanks
+1. Mickhail Zelenin for the idea for this gem.
+2. Egor Kiselev for help in creation of this manual.
+3. Alexey Bandar for the recommendation of the first provider.
