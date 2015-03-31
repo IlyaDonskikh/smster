@@ -11,6 +11,7 @@ Add gem:
   
 Install:
   rails g smster:install
+  rake db:migrate
 
 == Sending message
 Add config of your provider into config/initializers/smster.rb.
