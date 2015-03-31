@@ -21,7 +21,7 @@ And let's start!
   Sms::Clickatell.create(text: 'sms text', to: phone_number)
   
 == Callbacks
-Add to routes, setup proveder callbacks and get sms statuses:
+Add to routes, setup provider callbacks and get sms statuses:
   post 'smster/$provider_name/callback'
   
 == Feedback
