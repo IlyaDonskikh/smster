@@ -19,14 +19,23 @@ class Sms::Nexmo < Sms
         :from => 'OnlinePay',
         :api_key => api_key,
         :api_secret => api_secret)
-      JSON.parse(response)['messages'][0]['message-id']
+
+      json_response = JSON.parse(response)
+      error_text = json_response['messages'][0]['error-text']
+      json_response['messages'][0]['message-id']
     end
 
     if api_message_id.present?
       self.code = api_message_id
       self.status = STATUS_CODES[:sent]
-      self.save
     end
+
+    if error_text.present?
+      self.status = STATUS_CODES[:failed]
+      self.status_message = error_text
+    end
+
+    self.save
   rescue => e
     logger.debug("Error #{e}")
     self.status = STATUS_CODES[:failed]
