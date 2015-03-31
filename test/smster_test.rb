@@ -1,7 +1,16 @@
 require 'test_helper'
 
 class SmsterTest < ActiveSupport::TestCase
-  test "truth" do
-    assert_kind_of Module, Smster
+  test "confirguration" do
+    nexmo_key = "123"
+
+    Smster.configure do |config|
+      config.nexmo_key = nexmo_key
+    end
+
+    config = Smster.configuration
+
+    assert_equal "", config.clickatell_authorization_code
+    assert_equal nexmo_key, config.nexmo_key
   end
 end
