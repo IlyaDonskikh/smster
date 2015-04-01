@@ -18,8 +18,7 @@ Install:
 Add config of your provider into config/initializers/smster.rb.
 
 And let's start!
-  Sms::Nexmo.create(text: 'sms text', to: phone_number)
-  Sms::Clickatell.create(text: 'sms text', to: phone_number)
+  Sms::$Provider.create(text: 'sms text', to: phone_number) # Replace "$Provider" to "Nexmo", "Clickatell", etc..
   
 == Callbacks
 Add to routes, setup provider callbacks and get sms statuses:
