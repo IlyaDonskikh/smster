@@ -1,31 +1,28 @@
-class Sms::Nexmo < Sms
+class Sms::Smsru < Sms
   def send_sms
     config = Smster.configuration
-    api_key = config.nexmo_key
-    api_secret = config.nexmo_sekret
+    api_id = config.smsru_api_id
 
     text = self.text.tr(" ", "+")
     phone = to.gsub(/\D/, '') 
-    current_status = STATUS_CODES[:sent]
 
     api_message_id = if self.mode == 'test'
       logger.debug("Mode: #{mode}. To: #{phone}, text: #{text}")
       self.id
     else
-      response = RestClient.post('https://rest.nexmo.com/sms/json', 
+      response = RestClient.post('http://sms.ru/sms/send', 
+        "api_id" => api_id, 
         "text" => text, 
         "to" => phone.to_s, 
-        :content_type => :json,
-        :from => 'OnlinePay',
-        :api_key => api_key,
-        :api_secret => api_secret)
+        "from" => name
+      )
 
-      json_response = JSON.parse(response)
+      case response.include?('100')
+      when true then result = (/\n(.*)\n/).match(response)[1]
+      else raise response
+      end
 
-      error_text = json_response['messages'][0]['error-text']
-      raise error_text if error_text
-
-      json_response['messages'][0]['message-id']
+      result
     end
 
     if api_message_id.present?

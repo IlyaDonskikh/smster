@@ -5,4 +5,7 @@ Smster.configure do |config|
 
   ## Clickatell
   config.clickatell_authorization_code = ""
+
+  ## Smsru
+  config.smsru_api_id = ""
 end
