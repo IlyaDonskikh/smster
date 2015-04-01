@@ -3,6 +3,7 @@ require "smster/configuration"
 require 'smster/sms'
 require 'smster/sms/clickatell'
 require 'smster/sms/nexmo'
+require 'smster/sms/smsru'
 
 module Smster
   class Engine < Rails::Engine; end
