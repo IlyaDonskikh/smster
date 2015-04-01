@@ -28,6 +28,6 @@ Add to routes, setup provider callbacks and get sms statuses:
 Please use the {issue tracker}[https://github.com/IlyaDonskikh/smster/issues].
 
 == Thanks
-1. Mickhail Zelenin for the idea for this gem.
+1. {Mickhail Zelenin}[https://github.com/MioGreen] for the idea for this gem.
 2. Egor Kiselev for help in creation of this manual.
 3. Alexey Bandar for the recommendation of the first provider.

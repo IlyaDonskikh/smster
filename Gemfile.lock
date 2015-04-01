@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    smster (0.0.1)
+    smster (0.0.2)
       rails (~> 4)
       rest-client (~> 1.8)
 
