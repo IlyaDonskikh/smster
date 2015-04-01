@@ -4,6 +4,7 @@ SMS sending service through different providers with maximum convenience.
 ===== Supported
 * {Nexmo}[https://www.nexmo.com/]
 * {Clickatell}[https://www.clickatell.com/] 
+* {Smsru}[http://sms.ru/] 
 
 == Setup
 Add gem:
