@@ -25,7 +25,7 @@ Add to routes, setup provider callbacks and get sms statuses:
   post 'smster/$provider_name/callback'
   
 == Feedback
-Please use the {issue tracker}[https://github.com/IlyaDonskikh/smster/issues].
+Please use the {issue tracker}[https://github.com/IlyaDonskikh/smster/issues] or send mail to {donivrecord@gmail.com}[mailto:donivrecord@gmail.com].
 
 == Thanks
 1. {Mickhail Zelenin}[https://github.com/MioGreen] for the idea for this gem.
