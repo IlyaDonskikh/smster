@@ -1,0 +1,16 @@
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - test/dummy/db/**/*
+    - test/dummy/config/**/*
+    - test/dummy/script/**/*
+    - test/dummy/bin/**/*
+    - test/test_helper.rb
+Documentation:
+  Enabled: false
+IndentationConsistency:
+  Enabled: false
+ClassAndModuleChildren:
+  Enabled: false

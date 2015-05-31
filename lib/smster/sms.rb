@@ -1,5 +1,5 @@
 class Sms < ActiveRecord::Base
-  self.table_name = "smsters"
+  self.table_name = 'smsters'
   attr_accessor :mode
 
   ## Codes
@@ -21,12 +21,12 @@ class Sms < ActiveRecord::Base
 
   def mode
     @mode ||= case Rails.env
-    when 'test' then 'test'
-    else 'production'
-    end
+              when 'test' then 'test'
+              else 'production'
+              end
   end
 
   def accept!
-    self.update(status: STATUS_CODES[:delivered])
+    update(status: STATUS_CODES[:delivered])
   end
 end

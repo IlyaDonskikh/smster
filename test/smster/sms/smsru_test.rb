@@ -2,18 +2,18 @@ require 'test_helper'
 
 class Sms::SmsRuTest < ActiveSupport::TestCase
   def setup
-    @text = "simple text"
-    @number = (0...7).map { (1..9).to_a.sample }.join  
+    @text = 'simple text'
+    @number = (9_999_999 * rand).to_i
     @provider = Sms::Smsru
   end
 
-  test "create" do
+  test 'create' do
     sms = @provider.create(text: @text, to: @number)
 
     assert_equal false, sms.new_record?
   end
 
-  test "format to" do
+  test 'format to' do
     to = "+#{@number}"
     sms = @provider.create(text: @text, to: to)
 
