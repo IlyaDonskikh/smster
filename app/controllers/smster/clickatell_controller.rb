@@ -17,6 +17,7 @@ class Smster::ClickatellController < ApplicationController
   end
 
   private
+
     def clickatell_params
       params.require(:data)
     end

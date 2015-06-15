@@ -1,4 +1,4 @@
-class CreateSmsters< ActiveRecord::Migration
+class CreateSmsters < ActiveRecord::Migration
   def up
     create_table :smsters do |t|
       t.string :text

@@ -1,7 +1,7 @@
 AllCops:
   Include:
-    - Rakefile
-    - config.ru
+    - '**/Rakefile'
+    - '**/config.ru'
   Exclude:
     - test/dummy/db/**/*
     - test/dummy/config/**/*
