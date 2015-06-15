@@ -1,5 +1,7 @@
-= Smster
-SMS sending service through different providers with maximum convenience.
+= Smster (Rails)
+{<img src="https://codeclimate.com/github/IlyaDonskikh/smster/badges/gpa.svg" />}[https://codeclimate.com/github/IlyaDonskikh/smster]
+
+SMS sending service through different providers with maximum convenience (powered by {smster_ruby}[https://github.com/IlyaDonskikh/smster_ruby]).
 
 ===== Supported
 * {Nexmo}[https://www.nexmo.com/]
@@ -8,7 +10,7 @@ SMS sending service through different providers with maximum convenience.
 
 == Setup
 Add gem:
-  gem 'smster', git: 'git@github.com:IlyaDonskikh/smster.git'
+  gem 'smster'
   
 Install:
   rails g smster:install
