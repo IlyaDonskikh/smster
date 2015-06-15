@@ -2,11 +2,9 @@ require 'test_helper'
 
 class Smster::ClickatellControllerTest < ActionController::TestCase
   def setup
-    @text = 'simple text'
-    @to = (9_999_999 * rand).to_i
     @provider = Sms::Clickatell
 
-    stub_send_request
+    super
   end
 
   test 'callback' do

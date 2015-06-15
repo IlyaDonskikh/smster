@@ -3,10 +3,9 @@ require 'test_helper'
 class Sms::SmsRuTest < ActiveSupport::TestCase
   def setup
     @provider = Sms::Smsru
+    stub_cost_smsru_request
 
-    set_sms_params
-    stub_send_request
-    stub_cost_request
+    super
   end
 
   test 'create' do
@@ -21,13 +20,6 @@ class Sms::SmsRuTest < ActiveSupport::TestCase
       body = "100\n201523-1000007\nbalance=52.54"
 
       stub_request(:post, 'http://sms.ru/sms/send')
-        .to_return(status: 200, body: body, headers: {})
-    end
-
-    def stub_cost_request
-      body = "100\n0.69\n1"
-
-      stub_request(:post, 'http://sms.ru/sms/cost')
         .to_return(status: 200, body: body, headers: {})
     end
 end

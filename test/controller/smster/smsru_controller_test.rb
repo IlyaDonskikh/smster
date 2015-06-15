@@ -2,12 +2,11 @@ require 'test_helper'
 
 class Smster::SmsruControllerTest < ActionController::TestCase
   def setup
-    @text = 'simple text'
-    @to = (9_999_999 * rand).to_i
     @provider = Sms::Smsru
 
-    stub_send_request
-    stub_cost_request
+    stub_cost_smsru_request
+
+    super
   end
 
   test 'callback' do
@@ -27,13 +26,6 @@ class Smster::SmsruControllerTest < ActionController::TestCase
       body = "100\n201523-1000007\nbalance=52.54"
 
       stub_request(:post, 'http://sms.ru/sms/send')
-        .to_return(status: 200, body: body, headers: {})
-    end
-
-    def stub_cost_request
-      body = "100\n0.69\n1"
-
-      stub_request(:post, 'http://sms.ru/sms/cost')
         .to_return(status: 200, body: body, headers: {})
     end
 end

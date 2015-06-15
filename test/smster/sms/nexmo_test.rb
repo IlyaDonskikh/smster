@@ -4,10 +4,7 @@ class Sms::NexmoTest < ActiveSupport::TestCase
   def setup
     @provider = Sms::Nexmo
 
-    @to = (99_999_999 * rand).to_i.to_s
-    @text = 'i am rails smster!'
-
-    stub_send_request
+    super
   end
 
   test 'create' do

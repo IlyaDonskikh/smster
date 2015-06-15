@@ -4,10 +4,7 @@ class Sms::ClickatellTest < ActiveSupport::TestCase
   def setup
     @provider = Sms::Clickatell
 
-    @to = (99_999_999 * rand).to_i.to_s
-    @text = 'i am rails smster!'
-
-    stub_send_request
+    super
   end
 
   test 'create' do

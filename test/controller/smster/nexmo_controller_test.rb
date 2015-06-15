@@ -2,11 +2,9 @@ require 'test_helper'
 
 class Smster::NexmoControllerTest < ActionController::TestCase
   def setup
-    @text = 'simple text'
-    @number = (9_999_999 * rand).to_i
     @provider = Sms::Nexmo
 
-    stub_send_request
+    super
   end
 
   test 'callback' do
