@@ -3,13 +3,15 @@ require 'test_helper'
 class Smster::ClickatellControllerTest < ActionController::TestCase
   def setup
     @text = 'simple text'
-    @number = (9_999_999 * rand).to_i
+    @to = (9_999_999 * rand).to_i
     @provider = Sms::Clickatell
+
+    stub_send_request
   end
 
   test 'callback' do
-    delivered_code = Sms::STATUS_CODES[:delivered]
-    sms = @provider.create(text: @text, to: @number)
+    delivered_code = Sms::STATUSES[:delivered]
+    sms = @provider.create(text: @text, to: @to)
 
     post :callback, 'data' =>  {
       'charge' => 1.5,
@@ -22,4 +24,13 @@ class Smster::ClickatellControllerTest < ActionController::TestCase
     result = { sms.id => delivered_code }
     assert_equal result.as_json, response
   end
+
+  private
+
+    def stub_send_request
+      body = { data: { message: ['apiMessageId' => 15] } }.to_json
+
+      stub_request(:post, 'https://api.clickatell.com/rest/message')
+        .to_return(status: 200, body: body, headers: {})
+    end
 end

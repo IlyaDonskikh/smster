@@ -2,21 +2,26 @@ require 'test_helper'
 
 class Sms::ClickatellTest < ActiveSupport::TestCase
   def setup
-    @text = 'simple text'
-    @number = (9_999_999 * rand).to_i
     @provider = Sms::Clickatell
+
+    @to = (99_999_999 * rand).to_i.to_s
+    @text = 'i am rails smster!'
+
+    stub_send_request
   end
 
   test 'create' do
-    sms = @provider.create(text: @text, to: @number)
+    sms = @provider.create(text: @text, to: @to)
 
     assert_equal false, sms.new_record?
   end
 
-  test 'format to' do
-    to = "+#{@number}"
-    sms = @provider.create(text: @text, to: to)
+  private
 
-    assert_equal to, sms.to
-  end
+    def stub_send_request
+      body = { data: { message: ['apiMessageId' => 15] } }.to_json
+
+      stub_request(:post, 'https://api.clickatell.com/rest/message')
+        .to_return(status: 200, body: body, headers: {})
+    end
 end

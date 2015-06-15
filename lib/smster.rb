@@ -1,9 +1,10 @@
 require 'rest_client'
+require 'smster'
 require 'smster/configuration'
 require 'smster/sms'
-require 'smster/sms/clickatell'
-require 'smster/sms/nexmo'
 require 'smster/sms/smsru'
+require 'smster/sms/nexmo'
+require 'smster/sms/clickatell'
 
 module Smster
   class Engine < Rails::Engine; end

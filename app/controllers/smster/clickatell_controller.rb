@@ -4,6 +4,7 @@ class Smster::ClickatellController < ApplicationController
   def callback
     code = clickatell_params[:apiMessageId]
     description = clickatell_params[:description]
+
     sms = Sms::Clickatell.find_by!(code: code)
 
     sms.status_message = description

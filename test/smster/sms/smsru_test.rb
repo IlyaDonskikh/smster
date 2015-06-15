@@ -2,21 +2,24 @@ require 'test_helper'
 
 class Sms::SmsRuTest < ActiveSupport::TestCase
   def setup
-    @text = 'simple text'
-    @number = (9_999_999 * rand).to_i
     @provider = Sms::Smsru
+
+    set_sms_params
+    stub_send_request
   end
 
   test 'create' do
-    sms = @provider.create(text: @text, to: @number)
+    sms = @provider.create(text: @text, to: @to)
 
     assert_equal false, sms.new_record?
   end
 
-  test 'format to' do
-    to = "+#{@number}"
-    sms = @provider.create(text: @text, to: to)
+  private
 
-    assert_equal to, sms.to
-  end
+    def stub_send_request
+      body = "100\n201523-1000007\nbalance=52.54"
+
+      stub_request(:post, 'http://sms.ru/sms/send')
+        .to_return(status: 200, body: body, headers: {})
+    end
 end

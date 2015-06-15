@@ -13,3 +13,6 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+gem 'smster_ruby', '1.0.0'
+gem 'webmock', group: [:test]
+

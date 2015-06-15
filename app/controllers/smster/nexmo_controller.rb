@@ -10,8 +10,8 @@ class Smster::NexmoController < ApplicationController
     sms.save
 
     sms.accept! if status == 'delivered'
-    result = { sms.id => sms.status }
 
+    result = { sms.id => sms.status }
     render json: result.as_json, status: 200
   end
 end

@@ -1,32 +1,50 @@
 class Sms < ActiveRecord::Base
   self.table_name = 'smsters'
-  attr_accessor :mode
 
-  ## Codes
-  STATUS_CODES = { created: 0, sent: 1, delivered: 2, failed: 3 }
+  attr_accessor :from, :api_message_id
 
   ## Callbacks
-  after_create :send_sms
+  before_validation :assing_status
 
-  ## Validations
-  validates :type, :to, :text, presence: true
+  ## Codes
+  STATUSES = { created: 0, sent: 1, delivered: 2, failed: 3 }
 
   ## Etc.
-  def initialize(attributes = {})
-    attr_with_defaults = {
-      status: STATUS_CODES[:created]
-    }.merge(attributes)
-    super(attr_with_defaults)
+  def self.create(attrs = {})
+    sms = new(attrs).send_sms
+    sms.assing_code
+    sms.save
+
+    sms
   end
 
-  def mode
-    @mode ||= case Rails.env
-              when 'test' then 'test'
-              else 'production'
-              end
+  def assing_status
+    self.status ||= STATUSES[:created]
+  end
+
+  def send_sms
+    send_to_provider
+
+    status_name = api_message_id ? :sent : :failed
+    self.status = STATUSES[status_name]
+
+    self
   end
 
   def accept!
-    update(status: STATUS_CODES[:delivered])
+    update(status: STATUSES[:delivered])
   end
+
+  def assing_code
+    self.code = api_message_id
+  end
+
+  private
+
+    def send_to_provider
+      modify_params
+
+      response = send_request
+      assign_attrs_by(response)
+    end
 end
