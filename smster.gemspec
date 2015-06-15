@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 4'
   s.add_dependency 'rest-client', '~> 1.8'
-  s.add_dependency 'smster_ruby', '1.0.0'
+  s.add_dependency 'smster_ruby', '1.1.5'
 
   s.add_development_dependency 'sqlite3'
 end

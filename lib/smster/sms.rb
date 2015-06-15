@@ -1,7 +1,7 @@
 class Sms < ActiveRecord::Base
   self.table_name = 'smsters'
 
-  attr_accessor :from, :api_message_id
+  attr_accessor :from, :api_message_id, :balance, :cost
 
   ## Callbacks
   before_validation :assing_status
@@ -22,15 +22,6 @@ class Sms < ActiveRecord::Base
     self.status ||= STATUSES[:created]
   end
 
-  def send_sms
-    send_to_provider
-
-    status_name = api_message_id ? :sent : :failed
-    self.status = STATUSES[status_name]
-
-    self
-  end
-
   def accept!
     update(status: STATUSES[:delivered])
   end
@@ -38,13 +29,4 @@ class Sms < ActiveRecord::Base
   def assing_code
     self.code = api_message_id
   end
-
-  private
-
-    def send_to_provider
-      modify_params
-
-      response = send_request
-      assign_attrs_by(response)
-    end
 end

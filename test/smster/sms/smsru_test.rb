@@ -6,6 +6,7 @@ class Sms::SmsRuTest < ActiveSupport::TestCase
 
     set_sms_params
     stub_send_request
+    stub_cost_request
   end
 
   test 'create' do
@@ -20,6 +21,13 @@ class Sms::SmsRuTest < ActiveSupport::TestCase
       body = "100\n201523-1000007\nbalance=52.54"
 
       stub_request(:post, 'http://sms.ru/sms/send')
+        .to_return(status: 200, body: body, headers: {})
+    end
+
+    def stub_cost_request
+      body = "100\n0.69\n1"
+
+      stub_request(:post, 'http://sms.ru/sms/cost')
         .to_return(status: 200, body: body, headers: {})
     end
 end

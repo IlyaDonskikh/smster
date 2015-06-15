@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    smster (0.0.4)
+    smster (0.6.0)
       rails (~> 4)
       rest-client (~> 1.8)
-      smster_ruby (= 1.0.0)
+      smster_ruby (= 1.1.5)
 
 GEM
   remote: https://rubygems.org/
@@ -101,7 +101,7 @@ GEM
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     safe_yaml (1.0.4)
-    smster_ruby (1.0.0)
+    smster_ruby (1.1.5)
     sprockets (3.2.0)
       rack (~> 1.0)
     sprockets-rails (2.3.1)
@@ -125,6 +125,6 @@ PLATFORMS
 
 DEPENDENCIES
   smster!
-  smster_ruby (= 1.0.0)
+  smster_ruby (= 1.1.5)
   sqlite3
   webmock
